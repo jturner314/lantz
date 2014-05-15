@@ -87,12 +87,10 @@ class IEEE4882Driver(Driver):
     def service_request_enabled(self, value):
         return self.query('*SRE {0:d}', value)
 
-    event_status_reg = Feat()
-
-    @event_status_reg.setter
+    @Feat()
     def event_status_reg(self):
         """Queries the event register for the Standard Event Register group.
-        Register is read-only; bits not cleared when read.
+        Register is read-only; bits are cleared when read.
         """
         return int(self.query('*ESR?'))
 
